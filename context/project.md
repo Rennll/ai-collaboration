@@ -16,7 +16,7 @@ Established information that is useful for future work but may not be obvious fr
 
 ## Decisions
 
-Established architectural, product, or project decisions.
+Established architectural, product, or project choices.
 
 - 
 
@@ -32,4 +32,6 @@ Temporary, unverified context that is currently useful for ongoing work across s
 
 - 
 
-Review assumptions periodically. Remove them when they are no longer needed or when they become established facts or decisions.
+Review assumptions periodically. Remove them when they are no longer needed. When an assumption becomes established knowledge, preserve it in the appropriate form rather than keeping it as an assumption.
+
+AI may propose promoting an assumption to a Fact or Decision, but should not treat its own inference as a Rennll-owned Decision or Constraint without explicit confirmation.
