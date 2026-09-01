@@ -4,6 +4,18 @@ This repository defines the default collaboration contract between Rennll and AI
 
 The contract provides a shared operating model for judgment and collaboration. It is not a rigid workflow or checklist.
 
+## Adoption
+
+To adopt this contract in another project:
+
+1. Copy `AGENTS.md` into the project's root.
+2. Inspect the project before creating persistent context.
+3. Create `context/` only when information is worth carrying across sessions and cannot be reliably derived from the repository or tooling.
+4. Establish project-specific Decisions and Constraints explicitly.
+5. Do not persist session-only instructions, preferences, observations, or authorizations.
+
+The contract can be adopted without the context model. A project may use only `AGENTS.md` if no additional persistent context is needed.
+
 ## Principles
 
 ### 1. Understand the Goal and Verify the Outcome
