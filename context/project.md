@@ -10,19 +10,25 @@ What this project exists to accomplish.
 
 ## Facts
 
-Established information that is useful for future work but may not be obvious from the repository itself.
+Established information about the project's state that is useful for future work but may not be obvious from the repository itself.
+
+AI may record a Fact when it is supported by reliable evidence. An inference that has not been established should remain an Assumption.
 
 - 
 
 ## Decisions
 
-Established architectural, product, or project choices.
+Established architectural, product, or project choices that intentionally determine future direction.
+
+AI may propose a Decision, but only Rennll explicitly establishes or changes one.
 
 - 
 
 ## Constraints
 
-Explicit constraints established by Rennll for this project.
+Explicit boundaries established by Rennll for this project.
+
+AI may propose a Constraint, but only Rennll explicitly establishes or changes one. A change to a Constraint should be recorded explicitly rather than inferred from later behavior.
 
 - 
 
@@ -30,8 +36,10 @@ Explicit constraints established by Rennll for this project.
 
 Temporary, unverified context that is currently useful for ongoing work across sessions.
 
+Use Assumptions for useful inferences or provisional judgments that have not yet been established. They may be confirmed and moved to the appropriate form, or removed when they are no longer needed.
+
 - 
 
-Review assumptions periodically. Remove them when they are no longer needed. When an assumption becomes established knowledge, preserve it in the appropriate form rather than keeping it as an assumption.
+Review assumptions periodically. They are temporary project context, not permanent memory.
 
-AI may propose promoting an assumption to a Fact or Decision, but should not treat its own inference as a Rennll-owned Decision or Constraint without explicit confirmation.
+AI may propose promoting an assumption to a Fact, Decision, or Constraint. Promotion to a Decision or Constraint requires explicit confirmation from Rennll. An assumption should not be treated as established merely because it appears reasonable or has persisted across sessions.
