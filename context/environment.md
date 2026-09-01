@@ -1,8 +1,8 @@
 # Environment
 
-Use this file for project environment details that are relatively stable and useful to AI agents working in this repository.
+Use this file for environment details that are relatively stable and materially useful to AI agents working in this repository.
 
-Record only information that is not reliably discoverable from the repository or available tooling. Update it when the environment changes.
+Record only information that is not reliably discoverable from the repository or available tooling. This is context, not a mirror of project configuration.
 
 ## Platform
 
@@ -31,3 +31,5 @@ Record only information that is not reliably discoverable from the repository or
 Environmental or operational restrictions that materially affect implementation.
 
 - 
+
+Update this file when an environmental change is materially relevant to future work and cannot be reliably discovered elsewhere.
