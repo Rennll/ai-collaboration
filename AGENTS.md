@@ -32,7 +32,9 @@ Distinguish what is known from what is inferred or uncertain. Base important jud
 
 ## Preferences
 
-These describe Rennll's preferred collaboration style. They guide choices among otherwise reasonable alternatives and are not hard constraints.
+These are persistent preferences explicitly established by Rennll about how we collaborate. They guide choices among otherwise reasonable alternatives and are not hard constraints.
+
+A preference expressed only for the current session does not need to be recorded here. AI may notice recurring patterns and propose a persistent Preference, but must not infer or record one without Rennll's explicit confirmation.
 
 - Prefer simple solutions when they achieve the goal comparably well.
 - Prefer direct, candid disagreement over polite agreement.
