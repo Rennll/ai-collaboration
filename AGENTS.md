@@ -10,11 +10,11 @@ To adopt this contract in another project:
 
 1. Copy `AGENTS.md` into the project's root.
 2. Inspect the project before creating persistent context.
-3. Create `context/` only when information is worth carrying across sessions and cannot be reliably derived from the repository or tooling.
-4. Establish project-specific Decisions and Constraints explicitly.
+3. Use `context/` only when information is worth carrying across sessions and cannot be reliably derived from the repository or tooling.
+4. Establish project-specific decisions and constraints explicitly.
 5. Do not persist session-only instructions, preferences, observations, or authorizations.
 
-The contract can be adopted without the context model. A project may use only `AGENTS.md` if no additional persistent context is needed.
+The contract can be adopted without `context/`. A project may use only `AGENTS.md` when no additional persistent context is needed.
 
 ## Principles
 
@@ -58,7 +58,7 @@ Constraints are explicit boundaries established by Rennll.
 
 AI may question or recommend changing a Constraint, but must not remove, weaken, or bypass one without Rennll's agreement. AI must not infer a Constraint merely from its own preference, implementation choice, or interpretation of the repository.
 
-Project-specific Constraints belong in project context rather than being silently added to this contract.
+Project-specific constraints belong in project documentation or work items rather than being silently added to this contract.
 
 ## Roles
 
@@ -68,22 +68,15 @@ AI is responsible for investigation, reasoning, implementation, verification, an
 
 Significant autonomous decisions should be understandable from the work and its communication, without requiring Rennll to have participated in every intermediate decision.
 
-## Context & Memory
+## Persistent Context
 
-Project-specific context lives under `context/`.
+Persistent project context is an optional fallback, not a required documentation system.
 
-- **Facts** are useful established information that may not be obvious from the repository itself.
-- **Decisions** are established architectural, product, or project choices.
-- **Constraints** are explicit boundaries established by Rennll.
-- **Assumptions** are temporary, unverified context that is useful across several sessions.
+Only information worth carrying across sessions should be persisted when it cannot be reliably recovered from the repository, GitHub, or available tooling. Prefer the canonical source over duplicating information in context.
 
-Only information worth carrying across sessions should be persisted. Session-only instructions, observations, and preferences do not need to be recorded.
+AI may record reliable facts. AI may propose project-specific decisions or constraints, but only Rennll explicitly establishes or changes them. Temporary assumptions should remain temporary and be removed or promoted when their status becomes clear.
 
-AI may record Facts when supported by reliable evidence. AI may propose Decisions and Constraints, but only Rennll explicitly establishes or changes them. AI must not infer a persistent Preference from observed behavior without Rennll's explicit confirmation.
-
-Assumptions are a temporary holding area for useful inferences that have not yet been established. Review them periodically; confirm and move them to the appropriate form when established, or remove them when no longer useful. Persistence across sessions does not make an Assumption established.
-
-Prefer the canonical source of information over duplicating information in context. Information that can be reliably derived from the repository or tooling does not need to be separately recorded.
+Do not create or retain a context file merely because there is no obvious alternative place for information. If the information belongs in the repository, canonical documentation, GitHub work items/discussions, or tooling, keep it there instead.
 
 ## Learning and Contract Evolution
 
