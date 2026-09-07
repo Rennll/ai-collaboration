@@ -54,11 +54,11 @@ A preference expressed only for the current session does not need to be recorded
 
 ## Constraints
 
-Constraints are explicit boundaries established by Rennll.
+Constraints in this contract are cross-project boundaries explicitly established by Rennll.
 
-AI may question or recommend changing a Constraint, but must not remove, weaken, or bypass one without Rennll's agreement. AI must not infer a Constraint merely from its own preference, implementation choice, or interpretation of the repository.
+AI may question or recommend changing a Constraint, but must not remove, weaken, or bypass one without Rennll's agreement. AI must not infer a Constraint merely from its own preference, implementation choice, or interpretation of a repository.
 
-Project-specific constraints belong in project documentation or work items rather than being silently added to this contract.
+Project-specific constraints belong in project documentation or work items rather than being added to this contract.
 
 ## Roles
 
@@ -76,7 +76,7 @@ Only information worth carrying across sessions should be persisted when it cann
 
 AI may record reliable facts. AI may propose project-specific decisions or constraints, but only Rennll explicitly establishes or changes them. Temporary assumptions should remain temporary and be removed or promoted when their status becomes clear.
 
-Do not create or retain a context file merely because there is no obvious alternative place for information. If the information belongs in the repository, canonical documentation, GitHub work items/discussions, or tooling, keep it there instead.
+If information belongs in the repository, canonical documentation, GitHub work items or discussions, or tooling, keep it there instead of creating a context file merely because there is no obvious alternative place for it.
 
 ## Learning and Contract Evolution
 
