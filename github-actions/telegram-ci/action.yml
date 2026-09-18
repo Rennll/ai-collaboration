@@ -1,0 +1,54 @@
+name: Telegram CI Notification
+description: Send a concise GitHub Actions CI result to Telegram.
+inputs:
+  status:
+    description: "success or failure"
+    required: true
+  bot-token:
+    description: "Telegram bot token supplied by the caller repository secret"
+    required: true
+  chat-id:
+    description: "Telegram chat ID supplied by the caller repository secret"
+    required: true
+  failed-step:
+    description: "Name of the failed CI stage"
+    required: false
+    default: "CI"
+  log-file:
+    description: "Path to a captured CI log file"
+    required: false
+    default: ""
+runs:
+  using: composite
+  steps:
+    - name: Send Telegram notification
+      shell: bash
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ inputs.bot-token }}
+        TELEGRAM_CHAT_ID: ${{ inputs.chat-id }}
+        STATUS: ${{ inputs.status }}
+        FAILED_STEP: ${{ inputs.failed-step }}
+        LOG_FILE: ${{ inputs.log-file }}
+      run: |
+        set -euo pipefail
+        if [ "$STATUS" = "success" ]; then
+          message="\${GITHUB_SHA:0:7} PASS"
+        elif [ "$STATUS" = "failure" ]; then
+          if [ -n "$LOG_FILE" ] && [ -f "$LOG_FILE" ]; then
+            if grep -q "short test summary info" "$LOG_FILE"; then
+              error_summary="$(sed -n '/short test summary info/,$p' "$LOG_FILE" | tail -c 3500)"
+            else
+              error_summary="$(tail -c 3500 "$LOG_FILE")"
+            fi
+          else
+            error_summary="No detailed step output was captured."
+          fi
+          message="$(printf '❌ %s FAILED\n\n%s' "$FAILED_STEP" "$error_summary")"
+        else
+          echo "Unsupported status: $STATUS" >&2
+          exit 1
+        fi
+        curl --fail --silent --show-error --request POST \
+          "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+          --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+          --data-urlencode "text=${message}"
