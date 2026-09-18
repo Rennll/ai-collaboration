@@ -1,0 +1,57 @@
+name: CI with Telegram notification
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Replace these example stages with the real CI stages.
+      - name: Test
+        id: test
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          <your test command> 2>&1 | tee "$RUNNER_TEMP/test.log"
+
+      - name: Build
+        id: build
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          <your build command> 2>&1 | tee "$RUNNER_TEMP/build.log"
+
+      - name: Determine CI result
+        id: result
+        if: always()
+        shell: bash
+        env:
+          TEST_OUTCOME: ${{ steps.test.outcome }}
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+        run: |
+          if [ "$TEST_OUTCOME" = "failure" ]; then
+            echo "status=failure" >> "$GITHUB_OUTPUT"
+            echo "failed_step=Test" >> "$GITHUB_OUTPUT"
+            echo "log_file=$RUNNER_TEMP/test.log" >> "$GITHUB_OUTPUT"
+          elif [ "$BUILD_OUTCOME" = "failure" ]; then
+            echo "status=failure" >> "$GITHUB_OUTPUT"
+            echo "failed_step=Build" >> "$GITHUB_OUTPUT"
+            echo "log_file=$RUNNER_TEMP/build.log" >> "$GITHUB_OUTPUT"
+          else
+            echo "status=success" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Telegram notification
+        if: always()
+        uses: Rennll/ai-collaboration/github-actions/telegram-ci@main
+        with:
+          status: ${{ steps.result.outputs.status }}
+          failed-step: ${{ steps.result.outputs.failed_step }}
+          log-file: ${{ steps.result.outputs.log_file }}
+          bot-token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          chat-id: ${{ secrets.TELEGRAM_CHAT_ID }}
