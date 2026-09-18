@@ -32,7 +32,7 @@ runs:
       run: |
         set -euo pipefail
         if [ "$STATUS" = "success" ]; then
-          message="\${GITHUB_SHA:0:7} PASS"
+          message="${GITHUB_SHA:0:7} PASS"
         elif [ "$STATUS" = "failure" ]; then
           if [ -n "$LOG_FILE" ] && [ -f "$LOG_FILE" ]; then
             if grep -q "short test summary info" "$LOG_FILE"; then
@@ -43,7 +43,7 @@ runs:
           else
             error_summary="No detailed step output was captured."
           fi
-          message="$(printf '❌ %s FAILED\n\n%s' "$FAILED_STEP" "$error_summary")"
+          message="$(printf '%s ❌ %s FAILED\n\n%s' "${GITHUB_SHA:0:7}" "$FAILED_STEP" "$error_summary")"
         else
           echo "Unsupported status: $STATUS" >&2
           exit 1
