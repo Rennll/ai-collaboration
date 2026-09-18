@@ -1,28 +1,24 @@
 # AI Collaboration
 
-A lightweight collaboration contract for working with AI agents.
+A lightweight, AI-agent-oriented collaboration contract defining how Rennll and AI work together.
 
-`AGENTS.md` is the contract. It defines how AI and Rennll collaborate, with an emphasis on judgment, investigation, appropriate autonomy, and clear boundaries. It is not a task workflow, prompt template, or checklist.
+`AGENTS.md` is the contract itself. It defines collaboration judgment and boundaries, not a task workflow, prompt template, or checklist.
 
 ## Usage
 
-Copy `AGENTS.md` into a project's root and start working with AI. A project does not need a complete specification or documentation system before collaboration begins.
+Copy `AGENTS.md` into the project root and start collaborating with AI. You do not need to prepare a complete specification or build a documentation system first.
 
-Give the AI the material and context you already have. Let the project use its repository, documentation, GitHub work items, and other tools as appropriate. Add persistent context only when information is worth carrying across sessions and cannot be reliably recovered from those sources.
+If you only have a project idea, give the idea, drafts, design notes, or whatever material you already have to AI. AI should first understand the goal, investigate available information, organize requirements and risks, and involve the human when human judgment is needed.
 
-The contract is intentionally lightweight and does not prescribe a particular project workflow. Project-specific processes and decisions belong to the project itself.
+Once a project is being implemented, keep information where it belongs. Stable project knowledge belongs in the repository or canonical documentation; work that needs tracking belongs in GitHub work items. Only information worth preserving across sessions that cannot be reliably recovered from existing sources needs additional persistent context.
+
+## Principles
+
+- Understand the real goal before deciding how to implement it.
+- Investigate what can be investigated before asking the human for answers.
+- AI may autonomously handle reasonable and reversible work; significant trade-offs or irreversible decisions belong to the human.
+- Do not create extensive documentation, processes, or context merely because they might be useful later.
+- Stable rules and project knowledge should live in the appropriate canonical source instead of being duplicated.
+- Keep the collaboration contract lightweight; do not turn every mistake or preference into a permanent rule.
 
 This is **v1**: platform-independent and expected to evolve through real collaboration experience.
-
-## Session Bootstrap
-
-如果在新專案或新的長期工作 session 中使用這套契約，建議先讓 AI 讀取：
-
-- `AGENTS.md`：合作契約與跨專案原則。
-- `SESSION_BOOTSTRAP.md`：新 session 的啟動方法與判斷順序。
-
-最簡單的做法是在新專案開始時告訴 AI：
-
-> 請先讀取這個 repository 的 `AGENTS.md`。如果沒有，再讀取 `https://github.com/Rennll/ai-collaboration` 的 `AGENTS.md` 與 `SESSION_BOOTSTRAP.md`，依照其中的方法開始工作。
-
-新專案不需要複製整個 `ai-collaboration` repository；只有在需要採用契約時，才將 `AGENTS.md` 放入 project root。
